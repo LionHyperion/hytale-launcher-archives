@@ -24,9 +24,9 @@ Each build folder contains:
 
 ## Notes
 
-- Cache files, logs, and temporary WebView2 data are excluded via `.gitignore`
-- Installer executables are excluded to reduce repository size
-- Only essential launcher files and documentation are preserved
+- Cache files, logs, and temporary WebView2 data are included for complete archival purposes
+- All files are preserved except for security-sensitive authentication/login data (excluded via `.gitignore`)
+- This archive aims to preserve as much as possible, including temp files and logs
 
 ## Purpose
 

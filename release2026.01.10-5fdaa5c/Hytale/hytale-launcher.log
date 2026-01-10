@@ -1,0 +1,48 @@
+time=2026-01-10T09:40:06.515-06:00 level=INFO msg="starting hytale-launcher" version=2026.01.10-ae05554 branch=release
+time=2026-01-10T09:40:06.516-06:00 level=INFO msg="creating legal file" path=C:\Users\Kirk\AppData\Roaming\Hytale\third-party-licenses.txt
+time=2026-01-10T09:40:06.516-06:00 level=INFO msg="creating legal file" path=C:\Users\Kirk\AppData\Roaming\Hytale\eula.txt
+time=2026-01-10T09:40:06.538-06:00 level=INFO msg="[WebView2] Environment created successfully"
+time=2026-01-10T09:40:06.811-06:00 level=INFO msg="app initialized"
+time=2026-01-10T09:40:07.297-06:00 level=INFO msg="setting network mode" mode=online
+time=2026-01-10T09:40:07.297-06:00 level=INFO msg="setting channel" channel=release current=<nil>
+time=2026-01-10T09:40:16.789-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T09:40:22.525-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T09:40:22.754-06:00 level=ERROR msg="error checking for update" package=game error="no patchline available for channel release"
+time=2026-01-10T09:40:22.758-06:00 level=ERROR msg="error checking for updates" error="error checking for \"game\" update: no patchline available for channel release"
+time=2026-01-10T13:13:05.634-06:00 level=INFO msg="starting hytale-launcher" version=2026.01.10-ae05554 branch=release
+time=2026-01-10T13:13:05.662-06:00 level=INFO msg="[WebView2] Environment created successfully"
+time=2026-01-10T13:13:05.984-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T13:13:05.984-06:00 level=INFO msg="app initialized"
+time=2026-01-10T13:13:06.342-06:00 level=ERROR msg="connectivity check request failed" url=http://connectivitycheck.gstatic.com/generate_204 error="Head \"http://connectivitycheck.gstatic.com/generate_204\": dial tcp 64.233.185.94:80: connectex: An attempt was made to access a socket in a way forbidden by its access permissions."
+time=2026-01-10T13:13:06.368-06:00 level=ERROR msg="connectivity check request failed" url=http://www.msftconnecttest.com/connecttest.txt error="Head \"http://www.msftconnecttest.com/connecttest.txt\": dial tcp 23.219.160.42:80: connectex: An attempt was made to access a socket in a way forbidden by its access permissions."
+time=2026-01-10T13:13:06.368-06:00 level=WARN msg="no network connectivity detected" status=no_internet
+time=2026-01-10T13:13:06.368-06:00 level=INFO msg="setting network mode" mode=offline
+time=2026-01-10T13:13:06.369-06:00 level=INFO msg="setting channel" channel=<nil> current=<nil>
+time=2026-01-10T13:13:06.373-06:00 level=INFO msg="user logout"
+time=2026-01-10T13:13:06.373-06:00 level=INFO msg="setting channel" channel=<nil> current=<nil>
+time=2026-01-10T13:13:06.373-06:00 level=INFO msg="setting network mode" mode=unknown
+time=2026-01-10T13:13:06.373-06:00 level=INFO msg="setting channel" channel=release current=<nil>
+time=2026-01-10T13:13:13.873-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T13:13:13.944-06:00 level=INFO msg="setting network mode" mode=online
+time=2026-01-10T13:13:14.022-06:00 level=INFO msg="applying update" package=launcher
+time=2026-01-10T13:13:14.494-06:00 level=INFO msg="starting hytale-launcher" version=2026.01.10-5fdaa5c branch=release
+time=2026-01-10T13:13:14.499-06:00 level=INFO msg="spawning update helper process" bin=C:\Users\Kirk\AppData\Roaming\Hytale\install\release\package\launcher\2026.01.10-5fdaa5c\hytale-launcher.exe args="[-start-pid 28316 -source-exe C:\\Users\\Kirk\\AppData\\Roaming\\Hytale\\install\\release\\package\\launcher\\2026.01.10-5fdaa5c\\hytale-launcher.exe -dest-exe C:\\Program Files\\Hypixel Studios\\Hytale Launcher\\hytale-launcher.exe -launcher-patchline release -launcher-version 2026.01.10-5fdaa5c -sig 3c60937304b53efb216f50748346adae58e517f95fb4f35863bdfc7ead078d6b]"
+time=2026-01-10T13:13:14.499-06:00 level=INFO msg="executing elevated process" bin=C:\Users\Kirk\AppData\Roaming\Hytale\install\release\package\launcher\2026.01.10-5fdaa5c\hytale-launcher.exe
+time=2026-01-10T13:13:16.080-06:00 level=INFO msg="starting hytale-launcher" version=2026.01.10-5fdaa5c branch=release
+time=2026-01-10T13:13:16.084-06:00 level=INFO msg="performing update" source=C:\Users\Kirk\AppData\Roaming\Hytale\install\release\package\launcher\2026.01.10-5fdaa5c\hytale-launcher.exe target="C:\\Program Files\\Hypixel Studios\\Hytale Launcher\\hytale-launcher.exe"
+time=2026-01-10T13:13:16.084-06:00 level=INFO msg="waiting for parent process to exit" pid=28316
+time=2026-01-10T13:13:16.084-06:00 level=INFO msg="updating binary" from=C:\Users\Kirk\AppData\Roaming\Hytale\install\release\package\launcher\2026.01.10-5fdaa5c\hytale-launcher.exe to="C:\\Program Files\\Hypixel Studios\\Hytale Launcher\\hytale-launcher.exe"
+time=2026-01-10T13:13:16.108-06:00 level=INFO msg="launching updated process" path="C:\\Program Files\\Hypixel Studios\\Hytale Launcher\\hytale-launcher.exe"
+time=2026-01-10T13:13:16.109-06:00 level=INFO msg="executing process as user" bin="C:\\Program Files\\Hypixel Studios\\Hytale Launcher\\hytale-launcher.exe"
+time=2026-01-10T13:13:16.476-06:00 level=INFO msg="starting hytale-launcher" version=2026.01.10-5fdaa5c branch=release
+time=2026-01-10T13:13:16.506-06:00 level=INFO msg="[WebView2] Environment created successfully"
+time=2026-01-10T13:13:16.745-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T13:13:16.746-06:00 level=INFO msg="app initialized"
+time=2026-01-10T13:13:17.172-06:00 level=INFO msg="setting network mode" mode=online
+time=2026-01-10T13:13:17.172-06:00 level=INFO msg="setting channel" channel=release current=<nil>
+time=2026-01-10T13:13:17.411-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T13:15:05.381-06:00 level=INFO msg="user logout"
+time=2026-01-10T13:15:05.382-06:00 level=INFO msg="setting channel" channel=<nil> current=release
+time=2026-01-10T13:15:05.382-06:00 level=INFO msg="setting network mode" mode=unknown
+time=2026-01-10T13:15:05.382-06:00 level=INFO msg="setting channel" channel=release current=<nil>
+time=2026-01-10T13:15:05.446-06:00 level=INFO msg="setting network mode" mode=online

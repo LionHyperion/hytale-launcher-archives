@@ -1,0 +1,31 @@
+time=2026-01-10T09:25:05.660-06:00 level=INFO msg="starting hytale-launcher" version=2026.01.10-ae05554 branch=release
+time=2026-01-10T09:25:05.661-06:00 level=INFO msg="creating legal file" path=C:\Users\Kirk\AppData\Roaming\Hytale\third-party-licenses.txt
+time=2026-01-10T09:25:05.661-06:00 level=INFO msg="creating legal file" path=C:\Users\Kirk\AppData\Roaming\Hytale\eula.txt
+time=2026-01-10T09:25:05.689-06:00 level=INFO msg="[WebView2] Environment created successfully"
+time=2026-01-10T09:25:06.009-06:00 level=INFO msg="app initialized"
+time=2026-01-10T09:25:06.461-06:00 level=INFO msg="setting network mode" mode=online
+time=2026-01-10T09:25:06.461-06:00 level=INFO msg="setting channel" channel=release current=<nil>
+time=2026-01-10T09:25:37.797-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T09:31:30.345-06:00 level=INFO msg="accepted EULA" at=2026-01-10T15:31:30.345-06:00
+time=2026-01-10T09:31:46.279-06:00 level=INFO msg="setting channel" channel=pre-release current=release
+time=2026-01-10T09:31:46.543-06:00 level=ERROR msg="error checking for update" package=game error="no patchline available for channel pre-release"
+time=2026-01-10T09:31:46.547-06:00 level=ERROR msg="error checking for updates" error="error checking for \"game\" update: no patchline available for channel pre-release"
+time=2026-01-10T09:31:51.478-06:00 level=INFO msg="setting channel" channel=pre-release current=pre-release
+time=2026-01-10T09:31:51.482-06:00 level=ERROR msg="error checking for update" package=game error="no patchline available for channel pre-release"
+time=2026-01-10T09:31:51.483-06:00 level=ERROR msg="error checking for updates" error="error checking for \"game\" update: no patchline available for channel pre-release"
+time=2026-01-10T09:32:05.989-06:00 level=INFO msg="setting channel" channel=release current=pre-release
+time=2026-01-10T09:32:06.104-06:00 level=ERROR msg="error checking for update" package=game error="no patchline available for channel release"
+time=2026-01-10T09:32:06.104-06:00 level=ERROR msg="error checking for updates" error="error checking for \"game\" update: no patchline available for channel release"
+time=2026-01-10T09:33:19.341-06:00 level=INFO msg="starting hytale-launcher" version=2026.01.10-ae05554 branch=release
+time=2026-01-10T09:33:19.361-06:00 level=INFO msg="[WebView2] Environment created successfully"
+time=2026-01-10T09:33:19.590-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T09:33:19.590-06:00 level=INFO msg="restoring previously selected channel" channel=release
+time=2026-01-10T09:33:19.590-06:00 level=INFO msg="setting channel" channel=release current=<nil>
+time=2026-01-10T09:33:19.591-06:00 level=INFO msg="app initialized"
+time=2026-01-10T09:33:20.061-06:00 level=INFO msg="setting network mode" mode=online
+time=2026-01-10T09:33:20.619-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T09:33:24.266-06:00 level=INFO msg="user logout"
+time=2026-01-10T09:33:24.266-06:00 level=INFO msg="setting channel" channel=<nil> current=release
+time=2026-01-10T09:33:24.266-06:00 level=INFO msg="setting network mode" mode=unknown
+time=2026-01-10T09:33:24.266-06:00 level=INFO msg="setting channel" channel=release current=<nil>
+time=2026-01-10T09:33:24.383-06:00 level=INFO msg="setting network mode" mode=online

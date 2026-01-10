@@ -1,40 +1,66 @@
-# Ignore log files
-*.log
+# Security-sensitive files - DO NOT COMMIT
+# These files contain authentication tokens, cookies, login credentials, and personal data
+# 
+# NOTE: Logs, cache files, and other generated data ARE included for archival purposes
+# Only explicitly sensitive authentication/login/personal data is excluded
 
-# Ignore cache and temporary files
-**/Cache/
-**/cache/
-**/*.cache
-**/WebView2/
-**/EBWebView/
-**/Crashpad/
-**/GraphiteDawnCache/
-**/GrShaderCache/
-**/ShaderCache/
-**/component_crx_cache/
-**/extensions_crx_cache/
-**/certificate_revocation/
-**/Default/
+# Browser login data and saved passwords
+**/Login Data
+**/Login Data*
+**/Login Data For Account*
+
+# Cookies and session data (may contain authentication cookies)
+**/Cookies
+**/Cookies-*
+**/Network/Cookies*
+
+# Authentication tokens and credentials
+**/Vpn Tokens*
+**/Trust Tokens*
+**/Network/Trust Tokens*
+
+# Safe Browsing Network data (may contain sensitive browsing info)
+**/Safe Browsing Network/*
+
+# Local State files (may contain encrypted credentials and tokens)
 **/Local State
-**/Last Version
-**/RevisitationBloomfilter
-**/BrowserMetrics-spare.pma
-**/throttle_store.dat
-**/settings.dat
+**/Local State-*
 
-# Ignore user-specific files
-**/metadata/
-**/attachments/
-**/reports/
+# Browsing history (may contain personal browsing data)
+**/History
+**/History-*
+**/History-journal
 
-# Ignore shortcuts
-*.lnk
+# Preferences files (may contain profile IDs, account info, and settings)
+**/Preferences
+**/Secure Preferences
+**/Preferences-*
 
-# Keep important files
-!hytale-launcher.exe
-!uninstall.exe
-!hytale-launcher-installer-latest.exe
-!eula.txt
-!third-party-licenses.txt
-!**/package/**
-!**/install/**
+# Web Data (may contain autofill data, saved form data)
+**/Web Data
+**/Web Data-*
+**/Web Data-journal
+
+# Session Storage (may contain session tokens and sensitive app data)
+**/Session Storage/*
+**/Session Storage/
+
+# Local Storage (may contain sensitive application data)
+**/Local Storage/*
+**/Local Storage/
+
+# Sync Data (may contain synced credentials and personal data)
+**/Sync Data/*
+**/Sync Data/
+
+# Explicitly named credential/token files (case-insensitive patterns)
+**/*.token
+**/*.credential
+**/*.password
+**/*.secret
+**/*.auth
+**/token.*
+**/credential.*
+**/password.*
+**/secret.*
+**/auth.*
