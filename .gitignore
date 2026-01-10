@@ -1,74 +1,61 @@
-# Security-sensitive files - DO NOT COMMIT
-# These files contain authentication tokens, cookies, login credentials, and personal data
-# 
-# NOTE: Logs, cache files, and other generated data ARE included for archival purposes
-# Only explicitly sensitive authentication/login/personal data is excluded
+# Automation Scripts - These are server-side only, not part of the archive
+auto-download-service.js
+auto-update-and-process.sh
+continuous-service.sh
+setup-cron-automation.sh
+install-full-automation.sh
+run-latest-build.js
+run-latest.sh
+start-auto-service.sh
+check-build-status.sh
+check-github-status.js
+process-current-versions.js
+process-existing-version.js
+force-process-current.js
+restart-service.sh
+restart-service.ps1
+sync-to-server.ps1
+auto-fix-and-sync.ps1
 
-# Browser login data and saved passwords
-**/Login Data
-**/Login Data*
-**/Login Data For Account*
+# Logs - Not needed in archive
+*.log
+auto-download.log
+auto-process.log
+service.log
+continuous-service.log
 
-# Cookies and session data (may contain authentication cookies)
-**/Cookies
-**/Cookies-*
-**/Network/Cookies*
+# Documentation about automation - Not needed in archive
+AUTOMATION_SETUP.md
+AUTO_DOWNLOAD_GUIDE.md
+AUTOMATIC_PROCESSING.md
+AUTO_FIX_README.md
+FULL_AUTOMATION_SETUP.md
+QUICK_START.md
+RESTART_INSTRUCTIONS.md
+SYNC_GUIDE.md
+CHECK_STATUS_GUIDE.md
+README_AUTOMATION.md
+EXECUTION_VERIFICATION.md
+VERIFICATION_REPORT.md
+QUALITY_ASSESSMENT.md
+SUMMARY.md
 
-# Authentication tokens and credentials
-**/Vpn Tokens*
-**/Trust Tokens*
-**/Network/Trust Tokens*
+# Service directory files
+domains/
+navajo.playhyp.com/
 
-# Safe Browsing Network data (may contain sensitive browsing info)
-**/Safe Browsing Network/*
+# Node modules
+node_modules/
+package-lock.json
 
-# Local State files (may contain encrypted credentials and tokens)
-**/Local State
-**/Local State-*
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
 
-# Browsing history (may contain personal browsing data)
-**/History
-**/History-*
-**/History-journal
-
-# Preferences files (may contain profile IDs, account info, and settings)
-**/Preferences
-**/Secure Preferences
-**/Preferences-*
-
-# Web Data (may contain autofill data, saved form data)
-**/Web Data
-**/Web Data-*
-**/Web Data-journal
-
-# Session Storage (may contain session tokens and sensitive app data)
-**/Session Storage/*
-**/Session Storage/
-
-# Local Storage (may contain sensitive application data)
-**/Local Storage/*
-**/Local Storage/
-
-# Sync Data (may contain synced credentials and personal data)
-**/Sync Data/*
-**/Sync Data/
-
-# License keys and authentication files
-**/.keys/
-**/.keys/*
-
-# Explicitly named credential/token files (case-insensitive patterns)
-**/*.token
-**/*.credential
-**/*.password
-**/*.secret
-**/*.auth
-**/token.*
-**/credential.*
-**/password.*
-**/secret.*
-**/auth.*
-
-# Game launcher account files (may contain authentication tokens and session data)
-**/account.dat
-**/account.*
+# Only archive these:
+# versions/ - Launcher downloads
+# extracted/ - Extracted launchers  
+# runtime-archives/ - Runtime state
+# README.md - Archive documentation
