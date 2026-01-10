@@ -19,7 +19,6 @@ Each build folder contains:
 - `uninstall.exe` - Uninstaller (if available)
 - `eula.txt` - End User License Agreement
 - `third-party-licenses.txt` - Third-party software licenses
-- `.keys/` - License keys and authentication files
 - `install/` - Installation files and packages
 
 ## Notes

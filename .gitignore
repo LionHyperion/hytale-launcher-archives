@@ -53,6 +53,10 @@
 **/Sync Data/*
 **/Sync Data/
 
+# License keys and authentication files
+**/.keys/
+**/.keys/*
+
 # Explicitly named credential/token files (case-insensitive patterns)
 **/*.token
 **/*.credential
