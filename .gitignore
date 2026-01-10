@@ -1,51 +1,33 @@
-# Automation Scripts - These are server-side only, not part of the archive
-auto-download-service.js
-auto-update-and-process.sh
-continuous-service.sh
-setup-cron-automation.sh
-install-full-automation.sh
-run-latest-build.js
-run-latest.sh
-start-auto-service.sh
-check-build-status.sh
-check-github-status.js
-process-current-versions.js
-process-existing-version.js
-force-process-current.js
-restart-service.sh
-restart-service.ps1
-sync-to-server.ps1
-auto-fix-and-sync.ps1
+# NO CODE FILES - This is an archive repository only
+# Exclude ALL automation scripts and code files
 
-# Logs - Not needed in archive
+# All JavaScript files (automation code)
+*.js
+!extracted/**/*.js
+!runtime-archives/**/*.js
+
+# All shell scripts (automation code)
+*.sh
+!extracted/**/*.sh
+!runtime-archives/**/*.sh
+
+# All PowerShell scripts
+*.ps1
+
+# All logs
 *.log
-auto-download.log
-auto-process.log
-service.log
-continuous-service.log
 
-# Documentation about automation - Not needed in archive
-AUTOMATION_SETUP.md
-AUTO_DOWNLOAD_GUIDE.md
-AUTOMATIC_PROCESSING.md
-AUTO_FIX_README.md
-FULL_AUTOMATION_SETUP.md
-QUICK_START.md
-RESTART_INSTRUCTIONS.md
-SYNC_GUIDE.md
-CHECK_STATUS_GUIDE.md
-README_AUTOMATION.md
-EXECUTION_VERIFICATION.md
-VERIFICATION_REPORT.md
-QUALITY_ASSESSMENT.md
-SUMMARY.md
+# All documentation about automation
+*.md
+!README.md
 
-# Service directory files
+# Service directories
 domains/
 navajo.playhyp.com/
 
 # Node modules
 node_modules/
+package.json
 package-lock.json
 
 # Temporary files
@@ -54,8 +36,11 @@ package-lock.json
 .DS_Store
 Thumbs.db
 
-# Only archive these:
-# versions/ - Launcher downloads
-# extracted/ - Extracted launchers  
-# runtime-archives/ - Runtime state
-# README.md - Archive documentation
+# Git files (keep .gitignore itself)
+.git/
+
+# ONLY archive these directories:
+# versions/ - Launcher downloads (ZIP files, metadata)
+# extracted/ - Extracted launchers (executables, game files)
+# runtime-archives/ - Runtime state (game files, configs)
+# README.md - Archive documentation only
