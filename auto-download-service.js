@@ -23,10 +23,12 @@ const execAsync = promisify(exec);
 
 // Helper function to get git repo path (used by multiple config values)
 function getGitRepoPath() {
-    const repoPath = process.env.GIT_REPO_PATH || (process.env.HOME ? path.join(process.env.HOME, 'hytale-launcher-archives') : null);
+    // Support both Windows (USERPROFILE) and Linux/Mac (HOME)
+    const homeDir = process.env.HOME || process.env.USERPROFILE;
+    const repoPath = process.env.GIT_REPO_PATH || (homeDir ? path.join(homeDir, 'hytale-launcher-archives') : null);
     if (!repoPath) {
-        console.error('ERROR: GIT_REPO_PATH or HOME environment variable must be set for server deployment');
-        console.error('Set GIT_REPO_PATH environment variable or ensure HOME is set');
+        console.error('ERROR: GIT_REPO_PATH or HOME/USERPROFILE environment variable must be set for server deployment');
+        console.error('Set GIT_REPO_PATH environment variable or ensure HOME/USERPROFILE is set');
         process.exit(1);
     }
     return path.resolve(repoPath);
@@ -53,7 +55,8 @@ const CONFIG = {
     // Archive directory - store in git repo so files get committed
     // On server, this should be inside the git repo (e.g., ~/hytale-launcher-archives/versions)
     archiveDir: (() => {
-        const gitRepoPath = process.env.GIT_REPO_PATH || (process.env.HOME ? path.join(process.env.HOME, 'hytale-launcher-archives') : null);
+        const homeDir = process.env.HOME || process.env.USERPROFILE;
+        const gitRepoPath = process.env.GIT_REPO_PATH || (homeDir ? path.join(homeDir, 'hytale-launcher-archives') : null);
         if (gitRepoPath) {
             // Server: store in git repo
             return path.join(path.resolve(gitRepoPath), 'versions');
@@ -90,13 +93,16 @@ const CONFIG = {
     gitEnabled: process.env.GIT_ENABLED !== 'false',
     
     // Extract and run launcher (server-side only)
-    extractEnabled: process.env.EXTRACT_ENABLED === 'true',
-    runLauncherEnabled: process.env.RUN_LAUNCHER === 'true',
+    // Default to enabled for live archiving - can be disabled with EXTRACT_ENABLED=false
+    extractEnabled: process.env.EXTRACT_ENABLED !== 'false',
+    // Default to enabled for live archiving - can be disabled with RUN_LAUNCHER=false
+    runLauncherEnabled: process.env.RUN_LAUNCHER !== 'false',
     launcherWaitTime: process.env.LAUNCHER_WAIT_TIME ? parseInt(process.env.LAUNCHER_WAIT_TIME) : 300000, // 5 minutes default
     
     // Log file - store in git repo for server, or script dir for local dev
     logFile: (() => {
-        const gitRepoPath = process.env.GIT_REPO_PATH || (process.env.HOME ? path.join(process.env.HOME, 'hytale-launcher-archives') : null);
+        const homeDir = process.env.HOME || process.env.USERPROFILE;
+        const gitRepoPath = process.env.GIT_REPO_PATH || (homeDir ? path.join(homeDir, 'hytale-launcher-archives') : null);
         if (gitRepoPath) {
             return path.join(path.resolve(gitRepoPath), 'auto-download.log');
         }
@@ -155,12 +161,13 @@ function fetchJSON(url) {
 async function downloadFile(url, filePath) {
     return new Promise((resolve, reject) => {
         const protocol = url.startsWith('https:') ? https : http;
-        const file = require('fs').createWriteStream(filePath);
+        const fsSync = require('fs'); // Use sync fs for cleanup operations
+        const file = fsSync.createWriteStream(filePath);
         
         protocol.get(url, (res) => {
             if (res.statusCode !== 200) {
                 file.close();
-                fs.unlink(filePath).catch(() => {});
+                fsSync.unlink(filePath, () => {}); // Ignore errors on cleanup
                 reject(new Error(`HTTP ${res.statusCode}: ${res.statusMessage}`));
                 return;
             }
@@ -174,12 +181,12 @@ async function downloadFile(url, filePath) {
             
             file.on('error', (err) => {
                 file.close();
-                fs.unlink(filePath).catch(() => {});
+                fsSync.unlink(filePath, () => {}); // Ignore errors on cleanup
                 reject(err);
             });
         }).on('error', (err) => {
             file.close();
-            fs.unlink(filePath).catch(() => {});
+            fsSync.unlink(filePath, () => {}); // Ignore errors on cleanup
             reject(err);
         });
     });
@@ -279,7 +286,7 @@ async function notifyAPI(version, channel, platform, filePath) {
             req.end();
         });
     } catch (error) {
-        await log(`API notification failed: ${error.message}`, 'WARNING');
+        await log(`API notification failed (non-critical): ${error.message}`, 'WARNING');
     }
 }
 
@@ -316,33 +323,88 @@ async function processEndpoint(endpoint) {
         await log(`Found version: ${version} (${channel}) at ${downloadTimestamp}`);
         
         // Check if version directory already exists (check both with and without timestamp)
-        let versionDir = path.join(CONFIG.archiveDir, versionDirName);
         const versionDirWithoutTimestamp = path.join(CONFIG.archiveDir, fullVersion);
+        const versionDirWithTimestamp = path.join(CONFIG.archiveDir, versionDirName);
         
-        // If old format exists, use it; otherwise use new timestamped format
+        // Determine which directory to use (prefer existing one, or use timestamped for new)
+        let versionDir = null;
+        let versionExists = false;
+        
+        // Check for existing directories (old format first, then new format)
         try {
             await fs.access(versionDirWithoutTimestamp);
             versionDir = versionDirWithoutTimestamp;
+            versionExists = true;
             await log(`Using existing directory: ${fullVersion}`, 'INFO');
         } catch {
-            // Use timestamped directory
-            versionDir = path.join(CONFIG.archiveDir, versionDirName);
+            try {
+                await fs.access(versionDirWithTimestamp);
+                versionDir = versionDirWithTimestamp;
+                versionExists = true;
+                await log(`Using existing timestamped directory: ${versionDirName}`, 'INFO');
+            } catch {
+                // No existing directory - use timestamped format for new version
+                versionDir = versionDirWithTimestamp;
+                versionExists = false;
+            }
         }
         
-        // Check if timestamped version already exists
-        try {
-            await fs.access(versionDir);
-            await log(`Version ${versionDirName} already exists, skipping...`, 'INFO');
-            return { downloaded: false, version: fullVersion };
-        } catch {
-            // Directory doesn't exist, proceed with download
-        }
-        try {
-            await fs.access(versionDir);
-            await log(`Version ${fullVersion} already exists, skipping...`, 'INFO');
-            return { downloaded: false, version: fullVersion };
-        } catch {
-            // Directory doesn't exist, proceed with download
+        if (versionExists) {
+            await log(`Version ${fullVersion} already exists, checking if extraction/runtime archiving needed...`, 'INFO');
+            
+            // Check if extraction/runtime archiving is needed even though version exists
+            if (CONFIG.extractEnabled) {
+                const extractedDir = path.join(CONFIG.gitRepoPath, 'extracted', fullVersion);
+                const runtimeArchiveDir = path.join(CONFIG.gitRepoPath, 'runtime-archives');
+                
+                let needsProcessing = false;
+                
+                // Check if extracted but launcher never ran (no runtime archives)
+                try {
+                    await fs.access(extractedDir);
+                    // Extracted exists, check if runtime was archived
+                    try {
+                        const runtimeDirs = await fs.readdir(runtimeArchiveDir);
+                        const hasRuntimeForThisVersion = runtimeDirs.some(dir => dir.includes(fullVersion));
+                        if (!hasRuntimeForThisVersion && CONFIG.runLauncherEnabled) {
+                            needsProcessing = true;
+                            await log(`  Version extracted but launcher not run yet - will process...`, 'INFO');
+                        }
+                    } catch {
+                        // runtime-archives doesn't exist or is empty - needs processing
+                        if (CONFIG.runLauncherEnabled) {
+                            needsProcessing = true;
+                            await log(`  Version extracted but runtime not archived - will process...`, 'INFO');
+                        }
+                    }
+                } catch {
+                    // Not extracted yet - needs processing
+                    needsProcessing = true;
+                    await log(`  Version downloaded but not extracted - will process...`, 'INFO');
+                }
+                
+                if (needsProcessing) {
+                    // Process existing version for extraction/runtime archiving
+                    await log(`Processing existing version: ${fullVersion}`, 'INFO');
+                    const extractedFiles = await extractAndArchiveInstallers(versionDir, fullVersion);
+                    
+                    // Return as if downloaded so git commit happens
+                    return {
+                        downloaded: true, // Mark as downloaded so git commit happens
+                        version: fullVersion,
+                        count: 0, // No new downloads
+                        versionString: version,
+                        channel: channel,
+                        extractedFiles: extractedFiles || []
+                    };
+                } else {
+                    await log(`Version ${fullVersion} fully processed, skipping...`, 'INFO');
+                    return { downloaded: false, version: fullVersion };
+                }
+            } else {
+                await log(`Version ${fullVersion} already exists, skipping...`, 'INFO');
+                return { downloaded: false, version: fullVersion };
+            }
         }
         
         // Create version directory
@@ -375,8 +437,11 @@ async function processEndpoint(endpoint) {
                                     await log(`Downloaded and verified: ${fileName}`, 'SUCCESS');
                                     downloadedCount++;
                                     
-                                    // Notify API
-                                    await notifyAPI(version, channel, platformArch, filePath);
+                                    // Notify API (non-blocking, errors are logged but don't fail the download)
+                                    notifyAPI(version, channel, platformArch, filePath).catch((apiError) => {
+                                        // Error already logged in notifyAPI function, but ensure it's clear it's API-related
+                                        // Don't log again here to avoid duplicate messages
+                                    });
                                 } else {
                                     await log(`SHA256 mismatch for ${fileName} (expected: ${build.sha256}, got: ${fileHash})`, 'ERROR');
                                     await fs.unlink(filePath);
@@ -401,7 +466,12 @@ async function processEndpoint(endpoint) {
                                 }
                                 
                             } catch (error) {
-                                await log(`Failed to download ${build.url}: ${error.message}`, 'ERROR');
+                                // Distinguish between download failures and other errors
+                                if (error.message.includes('HTTP') || error.message.includes('ENOTFOUND') || error.message.includes('ECONNREFUSED')) {
+                                    await log(`Failed to download ${build.url}: ${error.message}`, 'ERROR');
+                                } else {
+                                    await log(`Error processing ${build.url}: ${error.message}`, 'ERROR');
+                                }
                             }
                         }
                     }
@@ -447,7 +517,7 @@ async function processEndpoint(endpoint) {
                 await log(`Extraction enabled - proceeding to extract and run launcher...`, 'INFO');
                 extractedFiles = await extractAndArchiveInstallers(versionDir, fullVersion);
             } else {
-                await log(`Extraction disabled (EXTRACT_ENABLED not set to 'true') - skipping extraction and launcher execution`, 'INFO');
+                await log(`Extraction disabled (EXTRACT_ENABLED=false) - skipping extraction and launcher execution`, 'INFO');
             }
             
             // Return version info for git commit (include extracted files)
@@ -524,15 +594,46 @@ async function extractAndArchiveInstallers(versionDir, fullVersion) {
                 // Make executable
                 await execAsync(`chmod +x "${launcherExec}"`);
                 
-                // Run launcher in background
-                const launcherProcess = exec(`"${launcherExec}"`, {
-                    cwd: path.dirname(launcherExec),
-                    detached: true,
-                    stdio: 'ignore'
-                });
-                launcherProcess.unref();
+                // Verify executable exists and is actually executable
+                try {
+                    await execAsync(`test -x "${launcherExec}"`);
+                } catch (error) {
+                    await log(`  ⚠ Launcher file is not executable: ${launcherExec}`, 'WARNING');
+                    throw new Error(`Launcher is not executable: ${error.message}`);
+                }
                 
-                await log(`  ✓ Launcher started (PID: ${launcherProcess.pid})`, 'SUCCESS');
+                // Run launcher in background
+                // Note: We keep the process reference (don't use detached: true) so we can kill it reliably
+                // Capture stderr to a file so we can see if it fails to start
+                const errorLogPath = path.join(extractDest, 'launcher-error.log');
+                const launcherProcess = exec(`"${launcherExec}" 2>"${errorLogPath}"`, {
+                    cwd: path.dirname(launcherExec),
+                    stdio: ['ignore', 'ignore', 'pipe'] // Still capture stderr to file
+                });
+                
+                // Wait a moment to see if process starts successfully
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Check if process is still running (if it crashed immediately, it won't be)
+                try {
+                    // Try to send signal 0 (doesn't kill, just checks if process exists)
+                    process.kill(launcherProcess.pid, 0);
+                    await log(`  ✓ Launcher started (PID: ${launcherProcess.pid})`, 'SUCCESS');
+                } catch (error) {
+                    // Process doesn't exist - it may have crashed
+                    await log(`  ⚠ Launcher process may have crashed immediately (PID: ${launcherProcess.pid})`, 'WARNING');
+                    // Check error log for details
+                    try {
+                        const errorLog = await fs.readFile(errorLogPath, 'utf8');
+                        if (errorLog.trim()) {
+                            await log(`  Error log: ${errorLog.substring(0, 200)}`, 'WARNING');
+                        }
+                    } catch {
+                        // Error log doesn't exist or is empty
+                    }
+                    throw new Error('Launcher failed to start or crashed immediately');
+                }
+                
                 await log(`  Waiting ${CONFIG.launcherWaitTime / 1000 / 60} minutes for downloads...`, 'INFO');
                 
                 // Wait for launcher to download files
@@ -543,11 +644,27 @@ async function extractAndArchiveInstallers(versionDir, fullVersion) {
                 const runtimeFiles = await archiveLinuxRuntimeState(extractDest, fullVersion);
                 filesToAdd.push(...runtimeFiles);
                 
-                // Kill launcher process
+                // Kill launcher process and all its children
                 try {
-                    process.kill(launcherProcess.pid);
-                } catch {
-                    // Process may have already exited
+                    // Try graceful termination first
+                    launcherProcess.kill('SIGTERM');
+                    await new Promise(resolve => setTimeout(resolve, 2000)); // Wait 2 seconds
+                    
+                    // Force kill if still running
+                    if (!launcherProcess.killed) {
+                        launcherProcess.kill('SIGKILL');
+                        await log(`  ✓ Launcher process terminated (force kill)`, 'INFO');
+                    } else {
+                        await log(`  ✓ Launcher process terminated (graceful)`, 'INFO');
+                    }
+                } catch (error) {
+                    // Try alternative method: kill by PID (works on Linux)
+                    try {
+                        await execAsync(`kill -TERM ${launcherProcess.pid} 2>/dev/null || kill -9 ${launcherProcess.pid} 2>/dev/null || true`);
+                        await log(`  ✓ Launcher process terminated via kill command`, 'INFO');
+                    } catch {
+                        await log(`  ⚠ Could not terminate launcher process (may have already exited)`, 'WARNING');
+                    }
                 }
             } else if (launcherExec) {
                 await log(`  Launcher found but RUN_LAUNCHER not enabled. Set RUN_LAUNCHER=true to run it.`, 'INFO');
@@ -632,7 +749,8 @@ async function archiveLinuxRuntimeState(launcherDir, fullVersion) {
         await log(`  🔒 Using safety filters to exclude sensitive data`, 'INFO');
         
         // Linux launcher typically creates files in ~/.local/share/Hytale or similar
-        const homeDir = process.env.HOME || process.env.HOME_DIR || '/tmp';
+        // Support both Windows (USERPROFILE) and Linux/Mac (HOME)
+        const homeDir = process.env.HOME || process.env.USERPROFILE || process.env.HOME_DIR || '/tmp';
         const possibleDataDirs = [
             path.join(homeDir, '.local', 'share', 'Hytale'),
             path.join(homeDir, '.hytale'),
@@ -754,14 +872,48 @@ async function copyDirectoryWithFilters(src, dest, relativePath = '') {
     return { copied: copiedCount, excluded: excludedCount };
 }
 
+// Helper function to filter paths that are safe for git (within repo)
+function filterSafeGitPaths(files) {
+    return files.filter(file => {
+        // Remove empty strings
+        if (!file || file.trim() === '') return false;
+        
+        // Check if path is outside repo (starts with ..)
+        if (file.startsWith('..')) {
+            return false;
+        }
+        
+        // Check if path is absolute and outside repo
+        if (path.isAbsolute(file)) {
+            const relative = path.relative(CONFIG.gitRepoPath, file);
+            if (relative.startsWith('..')) {
+                return false;
+            }
+        }
+        
+        return true;
+    });
+}
+
 // Git operations
 async function gitAdd(files) {
     if (!CONFIG.gitEnabled) return;
     
     try {
-        const filesStr = files.map(f => `"${f}"`).join(' ');
+        // Filter out unsafe paths before adding
+        const safeFiles = filterSafeGitPaths(files);
+        if (safeFiles.length === 0) {
+            await log(`No safe files to add to git (filtered ${files.length - safeFiles.length} unsafe paths)`, 'WARNING');
+            return;
+        }
+        
+        if (safeFiles.length < files.length) {
+            await log(`Filtered ${files.length - safeFiles.length} unsafe path(s) from git add`, 'WARNING');
+        }
+        
+        const filesStr = safeFiles.map(f => `"${f}"`).join(' ');
         await execAsync(`git add ${filesStr}`, { cwd: CONFIG.gitRepoPath });
-        await log(`Git add: ${files.length} file(s)`, 'INFO');
+        await log(`Git add: ${safeFiles.length} file(s)`, 'INFO');
     } catch (error) {
         await log(`Git add failed: ${error.message}`, 'WARNING');
         throw error;
@@ -840,16 +992,8 @@ async function checkForNewVersions() {
         results.push(result);
         
         // Collect files for git commit if download was successful
-        if (result.downloaded && result.version) {
-            const versionDir = path.join(CONFIG.archiveDir, result.version);
-            try {
-                // Get all files in the version directory
-                const files = await getAllFiles(versionDir);
-                filesToCommit.push(...files.map(f => path.relative(CONFIG.gitRepoPath, f)));
-            } catch (error) {
-                await log(`Failed to collect files for git: ${error.message}`, 'WARNING');
-            }
-        }
+        // Note: This is legacy code - files are now collected in the main loop below
+        // Keeping for potential future use but not actively used
     }
     
     const downloaded = results.filter(r => r.downloaded);
@@ -872,6 +1016,9 @@ async function checkForNewVersions() {
                         await log(`Including ${result.extractedFiles.length} extracted file(s)`, 'INFO');
                         relativeFiles = relativeFiles.concat(result.extractedFiles);
                     }
+                    
+                    // Filter out unsafe paths (outside git repo)
+                    relativeFiles = filterSafeGitPaths(relativeFiles);
                     
                     await log(`Total files to commit: ${relativeFiles.length}`, 'INFO');
                     if (relativeFiles.length > 0) {

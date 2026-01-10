@@ -1,0 +1,31 @@
+[2026-01-10 23:04:41] === Auto-Update and Process Started ===
+[2026-01-10 23:04:41] Step 1: Self-updating from git...
+[2026-01-10 23:04:42] Step 2: Updating service files...
+[2026-01-10 23:04:42] Step 3: Ensuring service is running...
+[2026-01-10 23:04:42] Service not running, starting it...
+[2026-01-10T23:04:42.258Z] [INFO] Auto-download service started (check interval: 300s)
+[2026-01-10T23:04:42.259Z] [INFO] === Starting version check ===
+[2026-01-10T23:04:42.259Z] [INFO] Checking release channel: https://launcher.hytale.com/version/release/launcher.json
+[2026-01-10 23:04:44] Service started successfully
+[2026-01-10 23:04:44] Step 4: Processing unprocessed versions...
+[2026-01-10 23:04:44] Latest version: 2026.01.10-3c4e752-stage
+[2026-01-10 23:04:44] Version needs processing, running build processor...
+[36m[2026-01-10T23:04:44.280Z] [INFO] === Run Latest Build ===[0m
+[36m[2026-01-10T23:04:44.280Z] [INFO] Git repo: /home/u298655980/hytale-launcher-archives[0m
+[36m[2026-01-10T23:04:44.280Z] [INFO] Versions dir: /home/u298655980/hytale-launcher-archives/versions[0m
+[36m[2026-01-10T23:04:44.281Z] [INFO] Extracted dir: /home/u298655980/hytale-launcher-archives/extracted[0m
+[36m[2026-01-10T23:04:44.281Z] [INFO] Runtime archive dir: /home/u298655980/hytale-launcher-archives/runtime-archives[0m
+[36m[2026-01-10T23:04:44.288Z] [INFO] 
+Latest version: 2026.01.10-68756d1-release[0m
+[36m[2026-01-10T23:04:44.289Z] [INFO] 
+=== Processing 2026.01.10-68756d1-release ===[0m
+[36m[2026-01-10T23:04:44.289Z] [INFO]   Already extracted, checking if launcher needs to run...[0m
+[36m[2026-01-10T23:04:44.297Z] [INFO]   Found launcher: /home/u298655980/hytale-launcher-archives/extracted/2026.01.10-68756d1-release/linux-launcher/hytale-launcher[0m
+[36m[2026-01-10T23:04:44.297Z] [INFO]   Running launcher to generate runtime state...[0m
+[33m[2026-01-10T23:04:46.302Z] [WARNING]   ⚠ Launcher process may have crashed immediately (PID: 106012)[0m
+[33m[2026-01-10T23:04:46.303Z] [WARNING]   Error log: /home/u298655980/hytale-launcher-archives/extracted/2026.01.10-68756d1-release/linux-launcher/hytale-launcher: error while loading shared libraries: libwebkit2gtk-4.1.so.0: cannot open shared object file: No such file or directory
+[0m
+[31m[2026-01-10T23:04:46.303Z] [ERROR] 
+=== Failed ===[0m
+[2026-01-10 23:04:46] WARNING: Build processing had issues
+[2026-01-10 23:04:46] Step 5: Auto-committing changes...
