@@ -1,0 +1,41 @@
+# Ignore log files
+*.log
+
+# Ignore cache and temporary files
+**/Cache/
+**/cache/
+**/*.cache
+**/WebView2/
+**/EBWebView/
+**/Crashpad/
+**/GraphiteDawnCache/
+**/GrShaderCache/
+**/ShaderCache/
+**/component_crx_cache/
+**/extensions_crx_cache/
+**/certificate_revocation/
+**/Default/
+**/Local State
+**/Last Version
+**/RevisitationBloomfilter
+**/BrowserMetrics-spare.pma
+**/throttle_store.dat
+**/settings.dat
+
+# Ignore user-specific files
+**/metadata/
+**/attachments/
+**/reports/
+
+# Ignore shortcuts
+*.lnk
+
+# Ignore installer executables (keep only the launcher exe itself)
+**/hytale-launcher-installer-latest.exe
+
+# Keep important files
+!hytale-launcher.exe
+!uninstall.exe
+!eula.txt
+!third-party-licenses.txt
+!**/package/**
