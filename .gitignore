@@ -30,12 +30,11 @@
 # Ignore shortcuts
 *.lnk
 
-# Ignore installer executables (keep only the launcher exe itself)
-**/hytale-launcher-installer-latest.exe
-
 # Keep important files
 !hytale-launcher.exe
 !uninstall.exe
+!hytale-launcher-installer-latest.exe
 !eula.txt
 !third-party-licenses.txt
 !**/package/**
+!**/install/**
