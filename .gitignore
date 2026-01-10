@@ -68,3 +68,7 @@
 **/password.*
 **/secret.*
 **/auth.*
+
+# Game launcher account files (may contain authentication tokens and session data)
+**/account.dat
+**/account.*
