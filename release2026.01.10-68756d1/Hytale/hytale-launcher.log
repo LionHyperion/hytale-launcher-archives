@@ -1,0 +1,79 @@
+time=2026-01-10T13:20:08.901-06:00 level=INFO msg="starting hytale-launcher" version=2026.01.10-980a9ef branch=release
+time=2026-01-10T13:20:08.902-06:00 level=INFO msg="creating legal file" path=C:\Users\Kirk\AppData\Roaming\Hytale\third-party-licenses.txt
+time=2026-01-10T13:20:08.902-06:00 level=INFO msg="creating legal file" path=C:\Users\Kirk\AppData\Roaming\Hytale\eula.txt
+time=2026-01-10T13:20:08.918-06:00 level=INFO msg="[WebView2] Environment created successfully"
+time=2026-01-10T13:20:09.223-06:00 level=INFO msg="app initialized"
+time=2026-01-10T13:20:09.655-06:00 level=INFO msg="setting network mode" mode=online
+time=2026-01-10T13:20:09.655-06:00 level=INFO msg="setting channel" channel=release current=<nil>
+time=2026-01-10T13:20:09.783-06:00 level=INFO msg="applying update" package=launcher
+time=2026-01-10T13:20:10.451-06:00 level=INFO msg="starting hytale-launcher" version=2026.01.10-5fdaa5c branch=release
+time=2026-01-10T13:20:10.457-06:00 level=INFO msg="spawning update helper process" bin=C:\Users\Kirk\AppData\Roaming\Hytale\install\release\package\launcher\2026.01.10-5fdaa5c\hytale-launcher.exe args="[-start-pid 14868 -source-exe C:\\Users\\Kirk\\AppData\\Roaming\\Hytale\\install\\release\\package\\launcher\\2026.01.10-5fdaa5c\\hytale-launcher.exe -dest-exe C:\\Program Files\\Hypixel Studios\\Hytale Launcher\\hytale-launcher.exe -launcher-patchline release -launcher-version 2026.01.10-5fdaa5c -sig a051190d881c367ae7f5a6ff516d4e74c74fcb4467ea2db2060d6ec90ecb818b]"
+time=2026-01-10T13:20:10.457-06:00 level=INFO msg="executing elevated process" bin=C:\Users\Kirk\AppData\Roaming\Hytale\install\release\package\launcher\2026.01.10-5fdaa5c\hytale-launcher.exe
+time=2026-01-10T13:20:11.652-06:00 level=INFO msg="starting hytale-launcher" version=2026.01.10-5fdaa5c branch=release
+time=2026-01-10T13:20:11.655-06:00 level=INFO msg="performing update" source=C:\Users\Kirk\AppData\Roaming\Hytale\install\release\package\launcher\2026.01.10-5fdaa5c\hytale-launcher.exe target="C:\\Program Files\\Hypixel Studios\\Hytale Launcher\\hytale-launcher.exe"
+time=2026-01-10T13:20:11.655-06:00 level=INFO msg="waiting for parent process to exit" pid=14868
+time=2026-01-10T13:20:11.655-06:00 level=INFO msg="updating binary" from=C:\Users\Kirk\AppData\Roaming\Hytale\install\release\package\launcher\2026.01.10-5fdaa5c\hytale-launcher.exe to="C:\\Program Files\\Hypixel Studios\\Hytale Launcher\\hytale-launcher.exe"
+time=2026-01-10T13:20:11.686-06:00 level=INFO msg="launching updated process" path="C:\\Program Files\\Hypixel Studios\\Hytale Launcher\\hytale-launcher.exe"
+time=2026-01-10T13:20:11.686-06:00 level=INFO msg="executing process as user" bin="C:\\Program Files\\Hypixel Studios\\Hytale Launcher\\hytale-launcher.exe"
+time=2026-01-10T13:20:12.016-06:00 level=INFO msg="starting hytale-launcher" version=2026.01.10-5fdaa5c branch=release
+time=2026-01-10T13:20:12.045-06:00 level=INFO msg="[WebView2] Environment created successfully"
+time=2026-01-10T13:20:12.278-06:00 level=INFO msg="app initialized"
+time=2026-01-10T13:20:12.691-06:00 level=INFO msg="setting network mode" mode=online
+time=2026-01-10T13:20:12.691-06:00 level=INFO msg="setting channel" channel=release current=<nil>
+time=2026-01-10T13:20:17.826-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T13:21:06.907-06:00 level=INFO msg="starting hytale-launcher" version=2026.01.10-5fdaa5c branch=release
+time=2026-01-10T13:21:06.934-06:00 level=INFO msg="[WebView2] Environment created successfully"
+time=2026-01-10T13:21:07.200-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T13:21:07.200-06:00 level=INFO msg="app initialized"
+time=2026-01-10T13:21:07.653-06:00 level=INFO msg="setting network mode" mode=online
+time=2026-01-10T13:21:07.653-06:00 level=INFO msg="setting channel" channel=release current=<nil>
+time=2026-01-10T13:21:07.905-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T13:46:26.832-06:00 level=INFO msg="starting hytale-launcher" version=2026.01.10-5fdaa5c branch=release
+time=2026-01-10T13:46:26.858-06:00 level=INFO msg="[WebView2] Environment created successfully"
+time=2026-01-10T13:46:27.136-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T13:46:27.136-06:00 level=INFO msg="restoring previously selected channel" channel=release
+time=2026-01-10T13:46:27.136-06:00 level=INFO msg="setting channel" channel=release current=<nil>
+time=2026-01-10T13:46:27.137-06:00 level=INFO msg="app initialized"
+time=2026-01-10T13:46:27.596-06:00 level=INFO msg="setting network mode" mode=online
+time=2026-01-10T13:46:28.156-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T13:48:43.856-06:00 level=INFO msg="starting hytale-launcher" version=2026.01.10-5fdaa5c branch=release
+time=2026-01-10T13:48:43.876-06:00 level=INFO msg="[WebView2] Environment created successfully"
+time=2026-01-10T13:48:44.103-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T13:48:44.103-06:00 level=INFO msg="restoring previously selected channel" channel=release
+time=2026-01-10T13:48:44.103-06:00 level=INFO msg="setting channel" channel=release current=<nil>
+time=2026-01-10T13:48:44.105-06:00 level=INFO msg="app initialized"
+time=2026-01-10T13:48:44.576-06:00 level=INFO msg="setting network mode" mode=online
+time=2026-01-10T13:48:45.091-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T14:07:42.338-06:00 level=INFO msg="starting hytale-launcher" version=2026.01.10-5fdaa5c branch=release
+time=2026-01-10T14:07:42.358-06:00 level=INFO msg="[WebView2] Environment created successfully"
+time=2026-01-10T14:07:42.650-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T14:07:42.651-06:00 level=INFO msg="restoring previously selected channel" channel=release
+time=2026-01-10T14:07:42.651-06:00 level=INFO msg="setting channel" channel=release current=<nil>
+time=2026-01-10T14:07:42.652-06:00 level=INFO msg="app initialized"
+time=2026-01-10T14:07:43.126-06:00 level=INFO msg="setting network mode" mode=online
+time=2026-01-10T14:07:43.409-06:00 level=INFO msg="applying update" package=launcher
+time=2026-01-10T14:07:44.159-06:00 level=INFO msg="starting hytale-launcher" version=2026.01.10-68756d1 branch=release
+time=2026-01-10T14:07:44.163-06:00 level=INFO msg="spawning update helper process" bin=C:\Users\Kirk\AppData\Roaming\Hytale\install\release\package\launcher\2026.01.10-68756d1\hytale-launcher.exe args="[-start-pid 5980 -source-exe C:\\Users\\Kirk\\AppData\\Roaming\\Hytale\\install\\release\\package\\launcher\\2026.01.10-68756d1\\hytale-launcher.exe -dest-exe C:\\Program Files\\Hypixel Studios\\Hytale Launcher\\hytale-launcher.exe -launcher-patchline release -launcher-version 2026.01.10-68756d1 -sig a051190d881c367ae7f5a6ff516d4e74c74fcb4467ea2db2060d6ec90ecb818b]"
+time=2026-01-10T14:07:44.163-06:00 level=INFO msg="executing elevated process" bin=C:\Users\Kirk\AppData\Roaming\Hytale\install\release\package\launcher\2026.01.10-68756d1\hytale-launcher.exe
+time=2026-01-10T14:07:47.691-06:00 level=INFO msg="starting hytale-launcher" version=2026.01.10-68756d1 branch=release
+time=2026-01-10T14:07:47.696-06:00 level=INFO msg="performing update" source=C:\Users\Kirk\AppData\Roaming\Hytale\install\release\package\launcher\2026.01.10-68756d1\hytale-launcher.exe target="C:\\Program Files\\Hypixel Studios\\Hytale Launcher\\hytale-launcher.exe"
+time=2026-01-10T14:07:47.696-06:00 level=INFO msg="waiting for parent process to exit" pid=5980
+time=2026-01-10T14:07:47.696-06:00 level=INFO msg="updating binary" from=C:\Users\Kirk\AppData\Roaming\Hytale\install\release\package\launcher\2026.01.10-68756d1\hytale-launcher.exe to="C:\\Program Files\\Hypixel Studios\\Hytale Launcher\\hytale-launcher.exe"
+time=2026-01-10T14:07:47.736-06:00 level=INFO msg="launching updated process" path="C:\\Program Files\\Hypixel Studios\\Hytale Launcher\\hytale-launcher.exe"
+time=2026-01-10T14:07:47.737-06:00 level=INFO msg="executing process as user via explorer.exe" bin="C:\\Program Files\\Hypixel Studios\\Hytale Launcher\\hytale-launcher.exe"
+time=2026-01-10T14:07:48.128-06:00 level=INFO msg="starting hytale-launcher" version=2026.01.10-68756d1 branch=release
+time=2026-01-10T14:07:48.153-06:00 level=INFO msg="[WebView2] Environment created successfully"
+time=2026-01-10T14:07:48.389-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T14:07:48.389-06:00 level=INFO msg="restoring previously selected channel" channel=release
+time=2026-01-10T14:07:48.389-06:00 level=INFO msg="setting channel" channel=release current=<nil>
+time=2026-01-10T14:07:48.391-06:00 level=INFO msg="app initialized"
+time=2026-01-10T14:07:48.810-06:00 level=INFO msg="setting network mode" mode=online
+time=2026-01-10T14:07:49.329-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T14:11:28.645-06:00 level=INFO msg="starting hytale-launcher" version=2026.01.10-68756d1 branch=release
+time=2026-01-10T14:11:28.669-06:00 level=INFO msg="[WebView2] Environment created successfully"
+time=2026-01-10T14:11:28.923-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
+time=2026-01-10T14:11:28.923-06:00 level=INFO msg="restoring previously selected channel" channel=release
+time=2026-01-10T14:11:28.923-06:00 level=INFO msg="setting channel" channel=release current=<nil>
+time=2026-01-10T14:11:28.925-06:00 level=INFO msg="app initialized"
+time=2026-01-10T14:11:29.410-06:00 level=INFO msg="setting network mode" mode=online
+time=2026-01-10T14:11:29.973-06:00 level=INFO msg="setting current profile to 179d1206-6b43-440c-8c00-133e129f9af6"
