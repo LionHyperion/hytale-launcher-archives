@@ -1,0 +1,23 @@
+{
+  "version": "2026.01.10-9ce426a",
+  "download_url": {
+    "linux": {
+      "amd64": {
+        "url": "https://launcher.arcanitegames.ca/builds/stage/linux/amd64/hytale-launcher-2026.01.10-9ce426a.zip",
+        "sha256": "b618c471fef57a05069e4b438d7f99c200a0d7892f171c83b2cc35926d38fda5"
+      }
+    },
+    "darwin": {
+      "arm64": {
+        "url": "https://launcher.arcanitegames.ca/builds/stage/darwin/arm64/hytale-launcher-2026.01.10-9ce426a.zip",
+        "sha256": "e47efcc28a9993ead7925e1fbd64814ad3cfcfc463ded8af094b944ce3020163"
+      }
+    },
+    "windows": {
+      "amd64": {
+        "url": "https://launcher.arcanitegames.ca/builds/stage/windows/amd64/hytale-launcher-2026.01.10-9ce426a.zip",
+        "sha256": "ffb5cddd98cee799ee991d44690c41572dbe1da18165723af3bda4c9b592300b"
+      }
+    }
+  }
+}
